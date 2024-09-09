@@ -5,11 +5,11 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CUver', style: TextStyle(color: Colors.white)),
+        title: Text('CUver', style: TextStyle(fontSize: 35,color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: Color(0xFF3F51B5), // Indigo
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
+          icon: Icon(Icons.menu, color: Colors.white, size: 45),
           onPressed: () {},
         ),
       ),
@@ -44,7 +44,11 @@ class MainScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.map, size: 64, color: Color(0xFF3F51B5)),
                     SizedBox(height: 16),
-                    Text('길찾기', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Color(0xFF3F51B5))),
+                    Text('길찾기',
+                        style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF3F51B5))),
                   ],
                 ),
               ),
@@ -68,7 +72,9 @@ class MainScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.settings, size: 45),
                           SizedBox(height: 8),
-                          Text('설정', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                          Text('설정',
+                              style: TextStyle(
+                                  fontSize: 35, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -91,7 +97,9 @@ class MainScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.star, size: 45),
                           SizedBox(height: 8),
-                          Text('즐겨찾기', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+                          Text('즐겨찾기',
+                              style: TextStyle(
+                                  fontSize: 35, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -107,6 +115,8 @@ class MainScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         selectedItemColor: Color(0xFF3F51B5),
         unselectedItemColor: Colors.grey[600],
+        selectedLabelStyle: TextStyle(fontSize: 25), // Adjusted font size
+        unselectedLabelStyle: TextStyle(fontSize: 20), // Adjusted font size
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
