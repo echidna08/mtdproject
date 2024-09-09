@@ -13,12 +13,12 @@ class MainScreen extends StatelessWidget {
         backgroundColor: Color(0xFF3F51B5), // Indigo
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+          padding: const EdgeInsets.only(left: 12.0),
           child: Align(
             alignment: Alignment.centerRight, // Align the menu button to the right
             child: InkResponse(
               onTap: () {},
-              radius: 30, // Radius for the ripple effect
+              radius: 23, // Radius for the ripple effect
               splashColor: Colors.grey.withOpacity(0.5), // Color and opacity of splash
               highlightColor: Colors.transparent, // Remove highlight color
               child: Container(
