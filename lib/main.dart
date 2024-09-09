@@ -12,12 +12,24 @@ class MainScreen extends StatelessWidget {
                 color: Colors.white)),
         backgroundColor: Color(0xFF3F51B5), // Indigo
         elevation: 0,
-        leading: Padding( // Add padding to adjust the position of IconButton
-          padding: const EdgeInsets.only(left: 16.0), // Adjust padding as needed
-          child: IconButton(
-            icon: Icon(Icons.menu, color: Colors.white, size: 45), // Adjusted size
-            padding: EdgeInsets.zero, // Remove default padding
-            onPressed: () {},
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Align(
+            alignment: Alignment.centerRight, // Align the menu button to the right
+            child: InkResponse(
+              onTap: () {},
+              radius: 30, // Radius for the ripple effect
+              splashColor: Colors.grey.withOpacity(0.5), // Color and opacity of splash
+              highlightColor: Colors.transparent, // Remove highlight color
+              child: Container(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                  size: 45,
+                ),
+              ),
+            ),
           ),
         ),
       ),
