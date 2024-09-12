@@ -1,180 +1,32 @@
 import 'package:flutter/material.dart';
-
-class MainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('CUver',
-            style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-                color: Colors.white)),
-        backgroundColor: Color(0xFF3F51B5), // Indigo
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: Align(
-            alignment: Alignment.centerRight, // Align the menu button to the right
-            child: InkResponse(
-              onTap: () {},
-              radius: 23, // Radius for the ripple effect
-              splashColor: Colors.grey.withOpacity(0.5), // Color and opacity of splash
-              highlightColor: Colors.transparent, // Remove highlight color
-              child: Container(
-                padding: EdgeInsets.all(0),
-                child: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                  size: 45,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF3F51B5), Color(0xFF303F9F)],
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Add your onPressed functionality here
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  elevation: 4,
-                ),
-                child: Ink(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    height: 200,
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.map, size: 64, color: Color(0xFF3F51B5)),
-                        SizedBox(height: 16),
-                        Text(
-                          '길찾기',
-                          style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF3F51B5),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Color(0xFF3F51B5),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        elevation: 4,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.settings, size: 64),
-                          SizedBox(height: 8),
-                          Text('설정',
-                              style: TextStyle(
-                                  fontSize: 35, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Color(0xFF3F51B5),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        elevation: 4,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.star, size: 64),
-                          SizedBox(height: 8),
-                          Text('즐겨찾기',
-                              style: TextStyle(
-                                  fontSize: 35, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: Color(0xFF3F51B5),
-        unselectedItemColor: Colors.grey[600],
-        selectedLabelStyle:
-        TextStyle(fontSize: 22, fontWeight: FontWeight.bold), // Adjusted font size for selected item
-        unselectedLabelStyle:
-        TextStyle(fontSize: 18, fontWeight: FontWeight.bold), // Adjusted font size for unselected item
-        iconSize: 45, // Adjusted font size
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: '알림'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
-        ],
-      ),
-    );
-  }
-}
+import 'package:kakao_flutter_sdk_common/kakao_flutter_sdk_common.dart';
+import 'main_screen.dart';
+import 'oauth/login_page.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: MainScreen(),
-    theme: ThemeData(
-      primaryColor: Color(0xFF3F51B5),
-      scaffoldBackgroundColor: Colors.white,
-    ),
-  ));
+  // 웹 환경에서 카카오 로그인을 정상적으로 완료하려면 runApp() 호출 전 아래 메서드 호출 필요
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // runApp() 호출 전 Flutter SDK 초기화
+  KakaoSdk.init(nativeAppKey: '{5e02af0aab7c259abc19a427f4f2bc9}');
+
+
+  runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'CUver',
+      theme: ThemeData(
+        primaryColor: Color(0xFF3F51B5),
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/main': (context) => MainScreen(),
+      },
+    );
+  }
 }
