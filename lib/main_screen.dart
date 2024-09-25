@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,26 +13,7 @@ class MainScreen extends StatelessWidget {
                 color: Colors.white)),
         backgroundColor: Color(0xFF3F51B5), // Indigo
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12.0),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: InkResponse(
-              onTap: () {},
-              radius: 23,
-              splashColor: Colors.grey.withOpacity(0.5),
-              highlightColor: Colors.transparent,
-              child: Container(
-                padding: EdgeInsets.all(0),
-                child: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                  size: 45,
-                ),
-              ),
-            ),
-          ),
-        ),
+        // Removed the leading property which contained the menu button
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -142,7 +122,7 @@ class MainScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 35,
                                   fontFamily: "Pretendard",
-                                  fontWeight: FontWeight.normal)),
+                                  fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
